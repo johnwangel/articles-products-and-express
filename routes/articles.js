@@ -4,16 +4,17 @@ const router = express.Router();
 const ARTICLES_DB = './db/article_db.json';
 const fs = require('fs');
 
-router.get('/', getArticles);
+router.route('/')
+  .get(getArticles)
+  .post(trySaveData);
+
+router.route('/:title')
+  .get(getArticle)
+  .put(editArticle)
+  .delete(deleteArticle);
+
 router.get('/new', newArticleForm);
-router.get('/:title', getArticle);
 router.get('/:title/edit', editArticleForm);
-
-router.post('/', trySaveData);
-
-router.put('/:title', editArticle);
-
-router.delete('/:title', deleteArticle);
 
 function trySaveData(req, res) {
   fs.readFile(ARTICLES_DB, (err, data) => {
@@ -31,13 +32,13 @@ function trySaveData(req, res) {
         let dbStr = JSON.stringify(db);
         fs.writeFile(ARTICLES_DB, dbStr, 'utf8', () => {
           if (err) {
-            res.redirect(500, '/articles/new');
+            res.redirect('/articles/new');
           }
-            res.redirect(200, `/articles/${title}`);
+            res.redirect(`/articles/${title}`);
         });
     } else {
       console.log('article exists');
-      res.redirect(500, '/articles/new');
+      res.redirect('/articles/new');
     }
   });
 }
@@ -66,16 +67,15 @@ function editArticle(req, res) {
         let dbStr = JSON.stringify(db);
         fs.writeFile(ARTICLES_DB, dbStr, 'utf8', () => {
           if (err) {
-            res.redirect(500, `/articles/${id}/edit`);
+            res.redirect(`/articles/${id}/edit`);
           }
-            res.redirect(200, `/articles/${titleUrl}`);
+            res.redirect(`/articles/${titleUrl}`);
         });
     } else {
-      res.redirect(500, `/articles/${title}/edit`);
+      res.redirect(`/articles/${title}/edit`);
     }
   });
 }
-
 
 function deleteArticle(req, res) {
   let title = req.body.title;
@@ -90,9 +90,9 @@ function deleteArticle(req, res) {
       let dbStr = JSON.stringify(db);
       fs.writeFile(ARTICLES_DB, dbStr, 'utf8', () => {
         if (err) {
-          res.redirect(500, `/articles/${id}/edit`);
+          res.redirect(`/articles/${id}/edit`);
         }
-          res.redirect(200, `/articles/`);
+          res.redirect(`/articles/`);
         });
     } else {
       res.render('404');
@@ -140,7 +140,7 @@ function editArticleForm(req, res) {
       let thisArticle = { title, titleUrl, author, body };
       res.render('editArticle', thisArticle);
     } else {
-      res.redirect(500, `/articles/${title}/edit`);
+      res.redirect(`/articles/${title}/edit`);
     }
   });
 }

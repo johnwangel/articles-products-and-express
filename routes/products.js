@@ -33,13 +33,13 @@ function trySaveData(req, res) {
         let dbStr = JSON.stringify(db);
         fs.writeFile(PRODUCTS_DB, dbStr, 'utf8', () => {
           if (err) {
-            res.redirect(500, '/products/new');
+            res.redirect('/products/new');
           }
-            res.redirect(200, `/products/${id}`);
+            res.redirect(`/products/${id}`);
         });
     } else {
       console.log('product exists');
-      res.redirect(500, '/products/new');
+      res.redirect('/products/new');
     }
   });
 }
@@ -75,7 +75,7 @@ function editForm(req, res) {
       console.log(thisProduct);
       res.render('editForm', thisProduct);
     } else {
-      res.redirect(500, `/products/${id}/edit`);
+      res.redirect(`/products/${id}/edit`);
     }
   });
 
@@ -105,12 +105,12 @@ function editProduct(req, res) {
         let dbStr = JSON.stringify(db);
         fs.writeFile(PRODUCTS_DB, dbStr, 'utf8', () => {
           if (err) {
-            res.redirect(500, `/products/${id}/edit`);
+            res.redirect(`/products/${id}/edit`);
           }
-            res.redirect(200, `/products/${id}`);
+            res.redirect(`/products/${id}`);
         });
     } else {
-      res.redirect(500, `/products/${id}/edit`);
+      res.redirect(`/products/${id}/edit`);
     }
   });
 }
@@ -125,7 +125,7 @@ function getProduct(req, res) {
       let prodObj = { products };
       res.render('index', prodObj);
     } else {
-      res.render('404');
+      res.redirect(`/products/new`);
     }
   });
 }
@@ -143,9 +143,9 @@ function deleteProduct(req, res) {
       let dbStr = JSON.stringify(db);
       fs.writeFile(PRODUCTS_DB, dbStr, 'utf8', () => {
         if (err) {
-          res.redirect(500, `/products/${id}/edit`);
+          res.redirect(`/products/${id}/edit`);
         }
-          res.redirect(200, `/products/`);
+          res.redirect(`/products/`);
         });
     } else {
       res.render('404');

@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 const express = require('express');
+
 const expHbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const bodyParser = require('Body-Parser');
-const PORT = process.env.PORT || 8000;
 
 const app = express();
 
@@ -25,6 +25,5 @@ const hbs = expHbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-const server = app.listen(PORT, () => {
-  console.log(`Server running on Port ${PORT}`);
-});
+
+module.exports = app;
