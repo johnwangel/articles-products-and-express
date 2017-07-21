@@ -1,0 +1,16 @@
+<h2>Edit Product</h2>
+<form action="/products/{{id}}?_method=PUT" method="POST">
+  Product ID:<br>
+  <input type="number" name="id" value="{{id}}" readonly>
+  <br>
+  Product Name:<br>
+  <input type="text" name="name" value="{{name}}">
+  <br>
+  Product Price:<br>
+  <input type="text" name="price" value="{{price}}">
+  <br>
+  Product Inventory:<br>
+  <input type="text" name="inventory" value="{{inventory}}">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
