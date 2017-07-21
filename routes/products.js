@@ -1,7 +1,8 @@
 /*jshint esversion: 6 */
 const express = require('express');
 const router = express.Router();
-const PRODUCTS_DB = './db.json';
+const PRODUCTS_DB = './db/product_db.json';
+const ARTICLES_DB = './db/article_db.json';
 const fs = require('fs');
 
 router.get('/', getProducts);

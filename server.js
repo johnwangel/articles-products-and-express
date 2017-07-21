@@ -14,6 +14,9 @@ app.use(methodOverride('_method'));
 const prod = require('./routes/products');
 app.use('/products', prod);
 
+const articles = require('./routes/articles');
+app.use('/articles', articles);
+
 const hbs = expHbs.create({
   defaultLayout: 'main',
   extname: 'hbs'
