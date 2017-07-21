@@ -1,1 +1,1 @@
-{"products":[{"id":1,"name":"Tonka dumptruck","price":5.99,"inventory":15},{"id":2,"name":"Barbie doll","price":9.99,"inventory":100},{"id":3,"name":"Etch-a-Sketch","price":25,"inventory":9}]}
+{"products":[{"id":2,"name":"Barbie doll","price":9.99,"inventory":100},{"id":3,"name":"Etch-a-Sketch","price":25,"inventory":9},{"id":4,"name":"Star Wars action figure: Anakin Skywalker","price":3.99,"inventory":10},{"id":5,"name":"Star Wars action figure: Luke Skywalker","price":3.99,"inventory":10}]}

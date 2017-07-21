@@ -1,0 +1,13 @@
+<h1>FEO Swartz - Inventory</h1>
+
+<div class='toys'>
+  {{#each products}}
+    <div class='toy'>
+      <h2>ID:{{id}} - {{name}}</h2>
+      <ul>
+        <li>Price: {{price}}</li>
+        <li>Inventory: {{inventory}}</li>
+      </ul>
+    </div>
+  {{/each}}
+</div>
