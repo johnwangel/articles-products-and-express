@@ -1,0 +1,13 @@
+<h2>Edit Article</h2>
+<form action="/articles/{{title}}?_method=PUT" method="POST">
+  TITLE:<br>
+  <input type="text" name="title" value="{{title}}" readonly>
+  <br>
+  Author:<br>
+  <input type="text" name="author" value="{{author}}">
+  <br>
+  Body:<br>
+  <input type="text" name="body" value="{{body}}">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>

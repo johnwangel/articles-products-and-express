@@ -11,15 +11,12 @@ router.get('/:id', getProduct);
 router.get('/:id/edit', editForm);
 
 router.post('/', trySaveData);
-router.post('/submit', trySaveData);
 
 router.put('/:id', editProduct);
 
 router.delete('/:id', deleteProduct);
 
 function trySaveData(req, res) {
-  console.log(req.body);
-
   fs.readFile(PRODUCTS_DB, (err, data) => {
     if (err) { throw err; }
     let db = JSON.parse(data);

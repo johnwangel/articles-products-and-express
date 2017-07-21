@@ -5,17 +5,15 @@ const ARTICLES_DB = './db/article_db.json';
 const fs = require('fs');
 
 router.get('/', getArticles);
-// router.get('/new', newForm);
-// router.get('/:id', getProduct);
-// router.get('/:id/edit', editForm);
+router.get('/new', newArticleForm);
+router.get('/:title', getArticle);
+router.get('/:title/edit', editArticleForm);
 
 router.post('/', trySaveData);
-// router.post('/submit', trySaveData);
 
 router.put('/:title', editArticle);
 
 router.delete('/:title', deleteArticle);
-
 
 function trySaveData(req, res) {
   fs.readFile(ARTICLES_DB, (err, data) => {
@@ -35,7 +33,7 @@ function trySaveData(req, res) {
           if (err) {
             res.redirect(500, '/articles/new');
           }
-            res.redirect(200, `/articles/${urlTitle}`);
+            res.redirect(200, `/articles/${title}`);
         });
     } else {
       console.log('article exists');
@@ -108,6 +106,47 @@ function getArticles(req, res){
     let db = JSON.parse(data);
     res.render('articleIndex', db);
   });
+}
+
+function getArticle(req, res) {
+  let title = req.params.title;
+  console.log(title);
+  fs.readFile(ARTICLES_DB, (err, data) => {
+    if (err) { throw err; }
+    let db = JSON.parse(data);
+    let article = db.articles.filter( art => art.title === title );
+    if (article[0]){
+      let artObj = { articles : article };
+      res.render('articleIndex', artObj);
+    } else {
+      res.render('404');
+    }
+  });
+}
+
+function editArticleForm(req, res) {
+  let title = req.params.title;
+  console.log(title);
+
+  fs.readFile(ARTICLES_DB, (err, data) => {
+  if (err) { throw err; }
+  let db = JSON.parse(data);
+  let article = db.articles.filter( art => art.title === title );
+  if (article[0]) {
+      let title = article[0].title;
+      let titleUrl = encodeURI(title);
+      let author = article[0].author;
+      let body = article[0].body;
+      let thisArticle = { title, titleUrl, author, body };
+      res.render('editArticle', thisArticle);
+    } else {
+      res.redirect(500, `/articles/${title}/edit`);
+    }
+  });
+}
+
+function newArticleForm(req, res){
+  res.render('newArticleForm');
 }
 
 module.exports = router;
