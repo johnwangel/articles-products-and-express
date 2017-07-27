@@ -1,0 +1,138 @@
+.header {
+  font-size: 24px;
+  color: violet;
+  font-weight: bold;
+  text-align: center;
+  background-color: seagreen;
+  height: 2em;
+  margin-top: 25px;
+  margin-bottom: 0;
+  padding-top: 10px;
+  font-family: 'Aclonica', sans-serif;
+  font-weight: lighter;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.news {
+  padding-top: 2px;
+  background-color: violet;
+  height: 90px;
+  margin-top: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+}
+
+.articles {
+  border: 10px, solid, purple;
+}
+
+.article {
+  border: 10px, solid, black;
+  background-color: lightgray;
+  padding: 10px 30px;
+  margin: 20px;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+.article h2 {
+  font-size: 24px;
+  color: purple;
+  text-align: cen%ter;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.article h3 {
+  font-size: 18px;
+  color: navyblue;
+  text-align: center;
+  justify-content:
+}
+
+.article p {
+  text-align: left;
+}
+
+.news h2, .inventory h2 {
+  padding-top: 20px;
+  font-size:24px;
+  text-align: center;
+}
+
+form label{
+  text-align: center;
+}
+
+input.article {
+  background-color: white;
+  width: 400px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+textarea.articleBody {
+  margin-top: 20px;
+  width: 800px;
+  height: 300px;
+  font-size: 16px;
+  align-content: top;
+  overflow-wrap: break-word;
+}
+
+input.submit {
+  margin: 10px;
+  font-size: 16px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+ul li {
+  list-style: none;
+}
+
+input {
+  width: 800px;
+}
+
+form {
+  align-items: center;
+}
+
+.article {
+  margin-left: 20%;
+  margin-right: 20%;
+
+}
+
+.submit {
+  align-self: center;
+  width: 100px;
+  height: 25px;
+  background-color: hotpink;
+  color: navyblue;
+}
+
+.toys {
+  border: 2px solid;
+  text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+
+.toy {
+    align-content: center;
+    background-color: lightgray;
+    margin: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
