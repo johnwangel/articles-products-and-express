@@ -1,10 +1,13 @@
-CREATE TABLE IF NOT EXISTS products
-(
- id serial PRIMARY KEY,
- name VARCHAR(90) NOT NULL UNIQUE,
- price FLOAT(2),
- inventory INT
-);
+DROP TABLE IF EXISTS articles;
+DROP TABLE IF EXISTS authors;
+
+-- CREATE TABLE IF NOT EXISTS products
+-- (
+--  id serial PRIMARY KEY,
+--  name VARCHAR(90) NOT NULL UNIQUE,
+--  price FLOAT(2),
+--  inventory INT
+-- );
 
 CREATE TABLE IF NOT EXISTS authors
 (

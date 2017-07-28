@@ -7,8 +7,8 @@ const bodyParser = require('Body-Parser');
 
 const app = express();
 
-app.use('/products', express.static('public'));
-app.use('/articles', express.static('public'));
+app.use(express.static('public'));
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));

@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 const express = require('express');
 const router = express.Router();
-const PRODUCTS_DB = './db/product_db.json';
-const ARTICLES_DB = './db/article_db.json';
-const fs = require('fs');
+//const PRODUCTS_DB = './db/product_db.json';
+//const ARTICLES_DB = './db/article_db.json';
+//const fs = require('fs');
 const db = require('../db_connect');
 
 let showError = false;
@@ -33,13 +33,13 @@ function trySaveData(req, res) {
   let price = req.body.price;
   let inventory = req.body.inventory;
 
-  db.one('INSERT INTO products (id, name, price, inventory) VALUES(DEFAULT, $1, $2, $3) RETURNING id', [name, price, inventory])
+  db.one('INSERT INTO products (id, name, price, inventory) VALUES(DEFAULT, $1, $2, $3) RETURNING id', [name, price, price, inventory])
   .then( data => {
     console.log(data.id);
     res.redirect(`/products/${data.id}`);
   })
   .catch(error => {
-    console.log(error);
+      showError = error;
       res.redirect('/products/new');
   });
 }
@@ -57,14 +57,11 @@ function editForm(req, res) {
 
   db.any('SELECT * FROM products WHERE id = $1', [id])
   .then( result => {
-    let name = result[0].name;
-    let price = Number(result[0].price);
-    let inventory = Number(result[0].inventory);
-    let thisProduct = { id, name, price, inventory };
-    res.render('editForm', thisProduct);
+    let newResult = result[0];
+    res.render('editForm', newResult);
   })
   .catch(error => {
-    showError = "Could not find a record with that ID.";
+    showError = "Could not find a record with that ID." + error;
     res.redirect('/products/new');
   });
 }
@@ -88,7 +85,7 @@ function editProduct(req, res) {
       res.redirect(`/products/${id}`);
     })
     .catch(error => {
-      showError = 'Cannot find that product.';
+      showError = 'Cannot find that product.' + error;
       res.redirect(`/products/new`);
     });
 }
@@ -102,6 +99,7 @@ function getProduct(req, res) {
     res.render('index', newObj);
   })
   .catch(error => {
+    showError = error;
     res.redirect('/products/new');
   });
 }
@@ -115,6 +113,7 @@ function deleteProduct(req, res) {
       res.redirect(`/products/`);
     })
     .catch(error => {
+        showError = error;
         res.redirect(`/products/${id}/edit`);
     });
 }

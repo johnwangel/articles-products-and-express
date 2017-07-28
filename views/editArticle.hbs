@@ -1,13 +1,15 @@
 <div class="news">
 <h1>Fresh Manoa - Articles</h1>
 <h2>Edit Article</h2>
-<form class="article" action="/articles/{{title}}?_method=PUT" method="POST"><br>
+<form class="article" action="/articles/{{id}}?_method=PUT" method="POST"><br>
+  <label for="id">Article ID:</label><br>
+  <input id="id" class="article" type="number" name="id" value="{{id}}" readonly><br>
   <label for="title">Title:</label><br>
-  <input id="title" class="article" type="text" name="{{title}}"><br>
+  <input id="title" class="article" type="text" name="title" value="{{title}}"><br>
   <label for="author">Author:</label><br>
-  <input id ="author" class="article" type="text" name="{{author}}"><br>
+  <input id ="author" class="article" type="text" name="author" value="{{name}}"><br>
   <label for="title">Body:</label><br>
-  <textarea id="body" class="articleBody" type="text" name="{{body}}"></textarea><br>
+  <textarea id="body" class="articleBody" type="text" name="body">{{body}}"</textarea><br>
   <input class="submit" type="submit" value="Submit">
 </form>
 </div>
